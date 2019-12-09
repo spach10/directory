@@ -102,4 +102,8 @@ object Deps {
     const val TEST_DBTOOLS_ROOM_JDBC = "org.dbtools:dbtools-room-jdbc:$DBTOOLS_VERSION"
     const val TEST_KOTLIN_COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINES_VERSION"
     const val TEST_MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+
+    // Glide
+    const val GLIDE = "com.github.bumptech.glide:glide:4.10.0"
+    const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:4.10.0"
 }

@@ -9,12 +9,13 @@ import androidx.room.DatabaseView
 data class DirectoryItem(
     val id: Long,
     val firstName: String,
-    val lastName: String
+    val lastName: String,
+    val profilePicture: String
 ) {
     fun getFullName() = "$firstName $lastName"
 
     companion object {
         const val VIEW_NAME = "DirectoryItem"
-        const val VIEW_QUERY = "SELECT id, lastName, firstName FROM Individual"
+        const val VIEW_QUERY = "SELECT id, lastName, firstName, profilePicture FROM Individual"
     }
 }

@@ -226,6 +226,10 @@ dependencies {
     kapt(Deps.ARCH_ROOM_COMPILER)
     implementation(Deps.DBTOOLS_ROOM)
 
+    // Glide
+    implementation(Deps.GLIDE)
+    annotationProcessor(Deps.GLIDE_COMPILER)
+
     // Custom SQLite database
     // (for use of SqliteOrgSQLiteOpenHelperFactory in AppModule.kt)
     //implementation(Deps.DBTOOLS_ROOM_SQLITE)

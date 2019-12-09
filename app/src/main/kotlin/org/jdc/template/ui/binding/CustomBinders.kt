@@ -1,8 +1,11 @@
 package org.jdc.template.ui.binding
 
 import android.text.format.DateUtils
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalTime
 import org.threeten.bp.OffsetDateTime
@@ -14,6 +17,13 @@ object CustomBinders {
         view.text = bool.toString()
     }
 
+    @JvmStatic
+    @BindingAdapter("profileImage")
+    fun setProfileImage(view: ImageView, url: String) {
+        Glide.with(view.context)
+                .load(url).apply(RequestOptions().circleCrop())
+                .into(view)
+    }
 
     @JvmStatic
     @BindingAdapter("textDate")
