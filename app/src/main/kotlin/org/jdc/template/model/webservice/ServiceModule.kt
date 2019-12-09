@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.jdc.template.BuildConfig
 import org.jdc.template.auth.MyAccountInterceptor
 import org.jdc.template.model.webservice.colors.ColorService
+import org.jdc.template.model.webservice.individuals.IndividualService
 import retrofit2.Retrofit
 import retrofit2.create
 import java.io.UnsupportedEncodingException
@@ -83,6 +84,16 @@ class ServiceModule {
             .build()
 
         return retrofit.create()
+    }
+
+    @Provides
+    @Singleton
+    fun getIndividualService(@Named(STANDARD_CLIENT) client: OkHttpClient) : IndividualService {
+        return Retrofit.Builder()
+                .baseUrl(IndividualService.BASE_URL)
+                .client(client)
+                .addConverterFactory(Json.nonstrict.asConverterFactory("application/json".toMediaType()))
+                .build().create()
     }
 
     companion object {

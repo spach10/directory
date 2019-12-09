@@ -49,10 +49,10 @@ class IndividualRepository
             household.name = lastName
             saveHousehold(household)
 
-            individuals.forEach { individual ->
-                individual.householdId = household.id
-                saveIndividual(individual)
-            }
+//            individuals.forEach { individual ->
+//                individual.householdId = household.id
+//                saveIndividual(individual)
+//            }
         }
     }
 

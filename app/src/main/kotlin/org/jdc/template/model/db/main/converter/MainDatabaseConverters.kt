@@ -2,6 +2,7 @@ package org.jdc.template.model.db.main.converter
 
 import androidx.room.TypeConverter
 import org.jdc.template.model.db.converter.ConverterUtil
+import org.jdc.template.model.db.main.type.IndividualAffiliationType
 import org.jdc.template.model.db.main.type.IndividualType
 
 class MainDatabaseConverters {
@@ -10,4 +11,15 @@ class MainDatabaseConverters {
 
     @TypeConverter
     fun fromTypeToString(value: IndividualType) = value.toString()
+
+    @TypeConverter
+    fun fromStringToAffilateType(value: String) =
+            try {
+                IndividualAffiliationType.valueOf(value.toUpperCase())
+            } catch (e: Exception) {
+                ConverterUtil.getDefaultAndLogInvalidEnum(e, IndividualAffiliationType.JEDI)
+            }
+
+    @TypeConverter
+    fun fromAffiliateTypeToString(value: IndividualAffiliationType) = value.toString()
 }

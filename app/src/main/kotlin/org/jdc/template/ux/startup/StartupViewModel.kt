@@ -25,7 +25,8 @@ class StartupViewModel
     private fun startup() = viewModelScope.launch {
         analytics.logEvent(Analytics.EVENT_LAUNCH_APP, mapOf(Analytics.PARAM_BUILD_TYPE to BuildConfig.BUILD_TYPE))
 
-        // do startup work here...
+        // Make REST call and get individuals
+        val response =
         showProgress( "Doing stuff")
 
         sendEvent(Event.StartupFinished)
@@ -35,7 +36,7 @@ class StartupViewModel
         startup()
     }
 
-    private suspend fun showProgress(message: String) {
+    private fun showProgress(message: String) {
         Timber.i("Startup progress: [%s]", message)
         sendEvent(Event.StartupProgress(currentProgressCount + 1, message))
     }

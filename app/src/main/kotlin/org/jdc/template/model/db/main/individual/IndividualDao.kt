@@ -36,8 +36,8 @@ interface IndividualDao {
     @Query("DELETE FROM Individual WHERE id = :id")
     suspend fun deleteById(id: Long)
 
-    @Query("SELECT lastModified FROM Individual WHERE id = :id")
-    suspend fun findLastModified(id: Long): OffsetDateTime?
+//    @Query("SELECT lastModified FROM Individual WHERE id = :id")
+//    suspend fun findLastModified(id: Long): OffsetDateTime?
 
     @Query("SELECT firstName FROM Individual WHERE id = :id")
     suspend fun findFirstName(id: Long): String?
