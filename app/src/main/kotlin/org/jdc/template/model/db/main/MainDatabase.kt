@@ -8,15 +8,15 @@ import org.jdc.template.model.db.converter.DateTimeTextConverter
 import org.jdc.template.model.db.main.converter.MainDatabaseConverters
 import org.jdc.template.model.db.main.directoryitem.DirectoryItem
 import org.jdc.template.model.db.main.directoryitem.DirectoryItemDao
-import org.jdc.template.model.db.main.household.Household
-import org.jdc.template.model.db.main.household.HouseholdDao
+import org.jdc.template.model.db.main.affiliate.Affiliate
+import org.jdc.template.model.db.main.affiliate.AffiliateDao
 import org.jdc.template.model.db.main.individual.Individual
 import org.jdc.template.model.db.main.individual.IndividualDao
 
 @Database(
     entities = [
         Individual::class,
-        Household::class
+        Affiliate::class
     ],
     views = [
         DirectoryItem::class
@@ -27,7 +27,7 @@ import org.jdc.template.model.db.main.individual.IndividualDao
 abstract class MainDatabase : RoomDatabase() {
 
     abstract val individualDao: IndividualDao
-    abstract val householdDao: HouseholdDao
+    abstract val affiliateDao: AffiliateDao
     abstract val directoryItemDao: DirectoryItemDao
 
     companion object {

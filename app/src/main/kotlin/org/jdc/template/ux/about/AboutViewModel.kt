@@ -12,13 +12,12 @@ import org.jdc.template.Analytics
 import org.jdc.template.BuildConfig
 import org.jdc.template.ext.saveBodyToFile
 import org.jdc.template.model.db.main.individual.Individual
-import org.jdc.template.model.db.main.type.IndividualType
+import org.jdc.template.model.db.main.type.IndividualAffiliationType
 import org.jdc.template.model.repository.IndividualRepository
 import org.jdc.template.model.webservice.colors.ColorService
 import org.jdc.template.model.webservice.colors.dto.ColorsDto
 import org.jdc.template.work.WorkScheduler
 import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalTime
 import retrofit2.Response
 import timber.log.Timber
 import java.io.File
@@ -48,34 +47,28 @@ class AboutViewModel
         individualRepository.deleteAllIndividuals()
 
         val individual1 = Individual()
-        individual1.householdId = 1
         individual1.firstName = "Jeff"
         individual1.lastName = "Campbell"
-        individual1.phone = "801-555-0000"
-        individual1.individualType = IndividualType.HEAD
-        individual1.birthDate = LocalDate.of(1970, 1, 1)
-        individual1.alarmTime = LocalTime.of(7, 0)
+        individual1.forceSensitive = true
+        individual1.individualAffiliateType = IndividualAffiliationType.JEDI
+        individual1.birthdate = LocalDate.of(1970, 1, 1)
 
         val individual1a = Individual()
-        individual1a.householdId = 1
         individual1a.firstName = "Ty"
         individual1a.lastName = "Campbell"
-        individual1a.phone = "801-555-0001"
-        individual1a.individualType = IndividualType.HEAD
-        individual1a.birthDate = LocalDate.of(1970, 1, 1)
-        individual1a.alarmTime = LocalTime.of(7, 0)
+        individual1a.forceSensitive = false
+        individual1a.individualAffiliateType = IndividualAffiliationType.RESISTANCE
+        individual1a.birthdate = LocalDate.of(1970, 1, 1)
 
         val individual2 = Individual()
-        individual2.householdId = 2
         individual2.firstName = "John"
         individual2.lastName = "Miller"
-        individual2.phone = "303-555-1111"
-        individual2.individualType = IndividualType.CHILD
-        individual2.birthDate = LocalDate.of(1970, 1, 2)
-        individual2.alarmTime = LocalTime.of(6, 0)
+        individual2.forceSensitive = true
+        individual2.individualAffiliateType = IndividualAffiliationType.SITH
+        individual2.birthdate = LocalDate.of(1970, 1, 2)
 
-        individualRepository.saveNewHousehold("Campbell", listOf(individual1, individual1a))
-        individualRepository.saveNewHousehold("Miller", listOf(individual2))
+        individualRepository.saveNewAffiliate("Campbell", listOf(individual1, individual1a))
+        individualRepository.saveNewAffiliate("Miller", listOf(individual2))
     }
 
     /**

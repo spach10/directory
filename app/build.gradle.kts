@@ -42,6 +42,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 android {
+
+    dexOptions {
+        javaMaxHeapSize = "4g"
+    }
+
     compileSdkVersion(AndroidSdk.COMPILE)
 
     defaultConfig {

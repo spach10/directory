@@ -40,10 +40,10 @@ class IndividualEditViewModel
 
             firstName.set(it.firstName)
             lastName.set(it.lastName)
-            phone.set(it.phone)
-            email.set(it.email)
-            birthDate.set(it.birthDate)
-            alarmTime.set(it.alarmTime)
+//            phone.set(it.phone)
+//            email.set(it.email)
+//            birthDate.set(it.birthDate)
+//            alarmTime.set(it.alarmTime)
         }
     }
 
@@ -54,10 +54,10 @@ class IndividualEditViewModel
 
         individual.firstName = firstName.get() ?: return@launch
         individual.lastName = lastName.get() ?: ""
-        individual.phone = phone.get() ?: ""
-        individual.email = email.get() ?: ""
-        individual.birthDate = birthDate.get()
-        individual.alarmTime = alarmTime.get() ?: LocalTime.now()
+//        individual.phone = phone.get() ?: ""
+//        individual.email = email.get() ?: ""
+//        individual.birthDate = birthDate.get()
+//        individual.alarmTime = alarmTime.get() ?: LocalTime.now()
 
         individualRepository.saveIndividual(individual)
 

@@ -9,6 +9,13 @@ import org.threeten.bp.OffsetDateTime
 
 object CustomBinders {
     @JvmStatic
+    @BindingAdapter("boolean")
+    fun setBoolean(view: TextView, bool: Boolean) {
+        view.text = bool.toString()
+    }
+
+
+    @JvmStatic
     @BindingAdapter("textDate")
     fun setTextDate(view: TextView, date: LocalDate?) {
         var text = ""

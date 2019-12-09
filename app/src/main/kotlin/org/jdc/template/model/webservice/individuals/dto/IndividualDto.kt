@@ -12,3 +12,4 @@ class IndividualDto(
         val forceSensitive: Boolean,
         val affiliation: IndividualAffiliationType
 )
+

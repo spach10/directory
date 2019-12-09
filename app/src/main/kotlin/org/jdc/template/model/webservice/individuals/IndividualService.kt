@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface IndividualService {
     @GET("/mobile/interview/directory")
-    suspend fun colors(): Response<IndividualsDto>
+    suspend fun individuals(): Response<IndividualsDto>
 
     companion object {
         const val BASE_URL = "https://ldscdn.org"

@@ -2,7 +2,7 @@ package org.jdc.template.model.repository
 
 import androidx.room.withTransaction
 import org.jdc.template.model.db.main.MainDatabaseWrapper
-import org.jdc.template.model.db.main.household.Household
+import org.jdc.template.model.db.main.affiliate.Affiliate
 import org.jdc.template.model.db.main.individual.Individual
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,7 +15,7 @@ class IndividualRepository
     private fun mainDatabase() = mainDatabaseWrapper.getDatabase()
 
     private fun individualDao() = mainDatabase().individualDao
-    private fun householdDao() = mainDatabase().householdDao
+    private fun householdDao() = mainDatabase().affiliateDao
     private fun directoryItemDao() = mainDatabase().directoryItemDao
 
     fun getDirectoryListFlow() = directoryItemDao().findAllDirectItemsFlow()
@@ -34,25 +34,25 @@ class IndividualRepository
         }
     }
 
-    suspend fun saveHousehold(household: Household) {
-        if (household.id <= 0) {
-            val newId = householdDao().insert(household)
-            household.id = newId
+    suspend fun saveAffiliate(affiliate: Affiliate) {
+        if (affiliate.id <= 0) {
+            val newId = householdDao().insert(affiliate)
+            affiliate.id = newId
         } else {
-            householdDao().update(household)
+            householdDao().update(affiliate)
         }
     }
 
-    suspend fun saveNewHousehold(lastName: String, individuals: List<Individual>) {
+    suspend fun saveNewAffiliate(lastName: String, individuals: List<Individual>) {
         mainDatabase().withTransaction {
-            val household = Household()
-            household.name = lastName
-            saveHousehold(household)
+            val affiliate = Affiliate()
+            affiliate.name = lastName
+            saveAffiliate(affiliate)
 
-//            individuals.forEach { individual ->
-//                individual.householdId = household.id
-//                saveIndividual(individual)
-//            }
+            individuals.forEach { individual ->
+                individual.affiliateId = affiliate.id
+                saveIndividual(individual)
+            }
         }
     }
 
