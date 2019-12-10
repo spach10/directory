@@ -19,10 +19,12 @@ object CustomBinders {
 
     @JvmStatic
     @BindingAdapter("profileImage")
-    fun setProfileImage(view: ImageView, url: String) {
-        Glide.with(view.context)
-                .load(url).apply(RequestOptions().circleCrop())
-                .into(view)
+    fun setProfileImage(view: ImageView, url: String?) {
+        url?.let {
+            Glide.with(view.context)
+                    .load(url).apply(RequestOptions().circleCrop())
+                    .into(view)
+        }
     }
 
     @JvmStatic

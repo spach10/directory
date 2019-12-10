@@ -1,3 +1,4 @@
 <resources>
     <dimen name="drag_elevation_height">8dp</dimen>
+    <bool name="is_phone_size">true</bool>
 </resources>

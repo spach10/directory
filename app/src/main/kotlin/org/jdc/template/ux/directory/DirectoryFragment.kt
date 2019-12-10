@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vikingsen.inject.viewmodel.savedstate.SavedStateViewModelFactory
 import me.eugeniomarletti.extras.bundle.BundleExtra
@@ -78,7 +79,10 @@ class DirectoryFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        if (resources.getBoolean(R.bool.is_phone_size))
+            binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        else
+            binding.recyclerView.layoutManager = GridLayoutManager(activity, 3)
         binding.recyclerView.adapter = adapter
     }
 
