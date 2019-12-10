@@ -20,4 +20,18 @@ data class Individual(
 ) {
 
     fun getFullName() = "$firstName $lastName"
+
+    override fun equals(other: Any?): Boolean {
+        other?.let {
+            if (other is Individual) {
+                return this.firstName == other.firstName
+                        && this.lastName == other.lastName
+                        && this.birthdate == other.birthdate
+                        && this.profilePicture == other.profilePicture
+                        && this.forceSensitive == other.forceSensitive
+                        && this.individualAffiliateType == other.individualAffiliateType
+            }
+        }
+        return false
+    }
 }

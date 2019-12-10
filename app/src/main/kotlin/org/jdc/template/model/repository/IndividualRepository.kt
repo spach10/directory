@@ -26,6 +26,8 @@ class IndividualRepository
     suspend fun getIndividualFirstName(individualId: Long) = individualDao().findFirstName(individualId)
 
     suspend fun saveIndividual(individual: Individual) {
+        if (isPreviouslyInserted(individual)) return
+
         if (individual.id <= 0) {
             val newId = individualDao().insert(individual)
             individual.id = newId
@@ -66,4 +68,13 @@ class IndividualRepository
     }
 
     suspend fun getAllMembers() = householdDao().findAllMembers()
+
+    private suspend fun isPreviouslyInserted(individualToInsert: Individual) : Boolean {
+        val individuals = getAllIndividuals()
+        individuals.map {
+            if (it.equals(individualToInsert))
+                return true
+        }
+        return false
+    }
 }
