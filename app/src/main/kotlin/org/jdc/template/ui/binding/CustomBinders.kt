@@ -1,20 +1,45 @@
 package org.jdc.template.ui.binding
 
+import android.annotation.SuppressLint
 import android.text.format.DateUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import org.jdc.template.model.db.main.type.IndividualAffiliationType
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalTime
 import org.threeten.bp.OffsetDateTime
 
 object CustomBinders {
+
+    @SuppressLint("SetTextI18n")
     @JvmStatic
-    @BindingAdapter("boolean")
-    fun setBoolean(view: TextView, bool: Boolean) {
-        view.text = bool.toString()
+    @BindingAdapter("affiliate")
+    fun setAffiliate(view: TextView, affiliationType: IndividualAffiliationType?) {
+        affiliationType?.let {
+            var affiliationString = ""
+            val affiliationArray = it.toString().split('_')
+            if (affiliationArray.size > 1) {
+                for (word in affiliationArray)
+                    affiliationString += " $word"
+            } else {
+                affiliationString = affiliationArray[0]
+            }
+
+            view.text = "Affiliation: $affiliationString"
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    @JvmStatic
+    @BindingAdapter("forceSensitive")
+    fun setForceSensitive(view: TextView, bool: Boolean?) {
+        bool?.let {
+            val boolString = if (it) "YES" else "NO"
+            view.text = "Force sensitive: $boolString"
+        }
     }
 
     @JvmStatic
